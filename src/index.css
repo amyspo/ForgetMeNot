@@ -1,0 +1,25 @@
+/*The index.css is where global styles live*/
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  line-height: 1.6;
+}
+
+h1, h2, h3, h4 {
+  line-height: 1.1;
+}
+
+input, button,
+textarea, select {
+  font-family: inherit;
+  font-size: inherit;
+}
+
+img {
+  display: block;
+  max-inline-size: 100%;
+}
