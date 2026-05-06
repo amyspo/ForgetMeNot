@@ -1,10 +1,12 @@
 import React from 'react';
-import Task from '../Task';
 
-function TaskList() {
+
+function TaskList({newTask}) {
   return <div>
     <ul>
-      <Task/>
+      {newTask.map((task) => (
+        <li key={Math.random()}>{task}</li>
+      ))}
     </ul>
   </div>;
 }
