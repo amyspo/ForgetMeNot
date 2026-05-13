@@ -12,8 +12,12 @@ body {
   color: hsl(40 64 37);
 }
 
-h1, h2, h3, h4 {
+h1 {
   line-height: 1.1;
+}
+
+h3 {
+  margin: 0;
 }
 
 input, button,
