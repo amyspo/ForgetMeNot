@@ -1,0 +1,12 @@
+.wrapper {
+    padding: 24px;
+}
+
+.flex {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.img {
+    height: 190px;
+}

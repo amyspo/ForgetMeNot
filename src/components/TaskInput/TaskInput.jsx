@@ -1,4 +1,5 @@
 import React from 'react';
+import styles from './TaskInput.module.css';
 
 function TaskInput({ addTask }) {
   const [inputValue, setInputValue] =
@@ -13,7 +14,7 @@ function TaskInput({ addTask }) {
         setInputValue('');
       }}
     >
-      <label htmlFor='taskinput'></label>
+      <label htmlFor='taskinput'>New Task: </label>
       <input
         id='taskinput'
         value={inputValue}
