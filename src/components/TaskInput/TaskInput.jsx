@@ -2,14 +2,16 @@ import React from 'react';
 import styles from './TaskInput.module.css';
 
 function TaskInput({ addTask }) {
+  const today = new Date().toISOString().split("T")[0];
+
   const [task, setTask] = React.useState({
     taskTitle: 'Do Laundry',
     taskDescription: 'Sort laundry and wash it',
-    dueNext: '2026-05-15',
+    dueNext: today,
     scheduledAs: 'monthly',
   });
 
-  console.log(task)
+  console.log(task);
 
   function handleTitleChange(e) {
     setTask({
