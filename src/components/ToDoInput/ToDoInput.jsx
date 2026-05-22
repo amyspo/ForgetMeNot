@@ -20,7 +20,7 @@ function ToDoInput({addToDo}) {
       const response = await fetch("api/todos", {
         method: 'POST',
         headers: {
-        "Content-Type": "application/json",
+          "Content-Type": "application/json",
         },
         body: JSON.stringify({
           title: inputValue,
