@@ -1,6 +1,7 @@
 import React from 'react';
 import styles from './ToDoList.module.css';
 import useSWR from 'swr';
+import ToDo from '../ToDo/ToDo';
 
 const ENDPOINT = '/api/todos/open';
 
@@ -29,7 +30,7 @@ function ToDoList() {
   return <div className={styles.wrapper}>
     <ul className={styles.list}>
       {data?.map(({id, title}) => (
-         <li key={id}>{title}</li>
+         <ToDo key={id} title={title}/>
       ))}
     </ul>
   </div>;

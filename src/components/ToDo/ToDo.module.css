@@ -1,0 +1,62 @@
+.flex {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    border-radius: 20px;
+    margin: 1rem 3rem 0 3rem;
+    background-color: rgb(238, 243, 247);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+.list {
+    list-style: none;
+    padding: 0;
+}
+
+.buttons {
+    display: grid;
+    padding: 1rem;
+}
+
+.title {
+    flex: 3;
+    align-self: center;
+    margin-left: 1rem;
+}
+
+.date {
+    opacity: 0.8;
+    margin: 1.5rem 0;
+}
+
+.p {
+    padding: 0;
+    margin: 0;
+}
+
+.done {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 8px;
+    background-color: #33a41f;
+    color: white;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
+}
+
+.delete {
+    margin-top: 5px;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 8px;
+    background-color: #eb4925;
+    color: white;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
+}
