@@ -2,7 +2,7 @@ import React from 'react';
 import styles from './ToDoList.module.css';
 import useSWR from 'swr';
 
-const ENDPOINT = 'api/todos/open';
+const ENDPOINT = '/api/todos/open';
 
 async function fetcher(endpoint) {
   const response = await fetch(endpoint);

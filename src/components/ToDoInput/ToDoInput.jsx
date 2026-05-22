@@ -1,14 +1,14 @@
 import React from 'react';
 import styles from './ToDoInput.module.css';
+import { mutate } from 'swr';
 
-function ToDoInput({addToDo}) {
+function ToDoInput() {
   const [inputValue, setInputValue] = React.useState('');
   const [status, setStatus] = React.useState('idle');
  
   function handleToDo(event) {
     event.preventDefault();
     sendTask(inputValue);
-    addToDo(inputValue);
     setInputValue('');
   }
 
@@ -37,6 +37,7 @@ function ToDoInput({addToDo}) {
     } catch {
         setStatus('error');
     }
+    mutate('/api/todos/open');
   }
 
   return <div className={styles.wrapper}>
@@ -56,7 +57,7 @@ function ToDoInput({addToDo}) {
         : 'Add'}
         </button>
     </form>
-    <div>{status}</div>
+    {/* <div>{status}</div> */}
   </div>;
 }
 
