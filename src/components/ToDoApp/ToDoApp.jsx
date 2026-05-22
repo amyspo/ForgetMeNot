@@ -9,7 +9,7 @@ function ToDoApp() {
   function addToDo(newToDo) {
     const newList = [...toDoList, newToDo];
     setToDoList(newList);
-    console.log(newList);
+    // console.log(newList);
   }
 
   return <div>
