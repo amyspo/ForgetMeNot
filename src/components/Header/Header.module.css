@@ -5,6 +5,8 @@
 .flex {
     display: flex;
     flex-wrap: wrap;
+    margin: 0 3rem;
+    border-bottom: solid 1px hsl(209, 46%, 19%);
 }
 
 .img {
