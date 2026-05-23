@@ -24,6 +24,10 @@
     margin-left: 1rem;
 }
 
+.titledone {
+    text-decoration: line-through;
+}
+
 .date {
     opacity: 0.8;
     margin: 1.5rem 0;

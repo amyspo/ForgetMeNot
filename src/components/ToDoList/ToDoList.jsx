@@ -16,7 +16,24 @@ async function fetcher(endpoint) {
 }
 
 function ToDoList() {
-  const { data, isLoading, error } = useSWR(ENDPOINT, fetcher);
+  const { data, isLoading, error,mutate } = useSWR(ENDPOINT, fetcher);
+
+  async function deleteTodo(identifier) {
+    const confirmed = window.confirm(
+      'Are you sure you want to delete this task?'
+    );
+
+    if (!confirmed) return;
+
+    const response = await fetch(`/api/todos/${identifier}`, {
+     method: 'DELETE',
+    });
+
+    if (!response.ok) {
+      throw new Error('Could not delete todo');
+    }
+    mutate();
+  }
 
   if (isLoading) {
     return <p>Loading…</p>;
@@ -30,7 +47,7 @@ function ToDoList() {
   return <div className={styles.wrapper}>
     <ul className={styles.list}>
       {data?.map(({id, title}) => (
-         <ToDo key={id} title={title}/>
+         <ToDo key={id} title={title} identifier={id} deleteTodo={deleteTodo}/>
       ))}
     </ul>
   </div>;
