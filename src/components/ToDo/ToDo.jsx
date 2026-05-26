@@ -7,6 +7,32 @@ const today = new Date().toISOString().split("T")[0];
 function ToDo({title, identifier, deleteTodo}) {
   const [isDone, setIsDone] = React.useState(false);
   const [editMode, setEditMode] = React.useState(false);
+  const [todoTitle, setTodoTitle] = React.useState(title);
+
+  async function sendNewTitle(todoTitle) {
+
+    try {
+      const response = await fetch(`api/todos/${identifier}/rename`, {
+        method: 'POST',
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          newTitle: todoTitle,
+        }),
+      });
+
+      const json = await response.json();
+
+      if (json.id) {
+        setStatus('success');
+      } else {
+        setStatus('error');
+      }
+    } catch {
+        setStatus('error');
+    }
+  }
 
   function handleDone() {
     setIsDone(!isDone);
@@ -14,6 +40,7 @@ function ToDo({title, identifier, deleteTodo}) {
 
   function handleEdit() {
     setEditMode(!editMode);
+    sendNewTitle(todoTitle);
   }
 
   return <div>
@@ -23,13 +50,26 @@ function ToDo({title, identifier, deleteTodo}) {
           <div className={styles.flex}>
             <div className={styles.title}>
               {!editMode
-              ? <h2 className={clsx(isDone ? styles.titledone : '')}>{title}</h2>
-              : <input value={title}></input>}
+              ? <h2 className={clsx(isDone ? styles.titledone : '')}>{todoTitle}</h2>
+              : <input value={todoTitle} 
+                onChange = {(event) => {
+                  setTodoTitle(event.target.value);
+                }}
+                onKeyDown={(event) => {
+                  if (event.key === 'Enter') {
+                    setTodoTitle(todoTitle);
+                    setEditMode(false);
+                    sendNewTitle(todoTitle);
+                }
+                }}/>}
             </div>
             <div className={styles.date}>
               <p className={styles.p}>Due Date:</p>
               <p className={styles.p}>{today}</p>
-              <button onClick={handleEdit}>edit todo</button>
+              <button onClick={handleEdit}>{editMode 
+                  ? 'DONE'
+                  : 'start edit'}
+              </button>
             </div>
             <div className={styles.buttons}>
               <button className={styles.done} onClick={handleDone}>Done</button>
