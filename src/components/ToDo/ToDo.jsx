@@ -2,9 +2,9 @@ import React from 'react';
 import styles from './ToDo.module.css';
 import clsx from 'clsx';
 
-const today = new Date().toISOString().split("T")[0];
 
-function ToDo({title, identifier, deleteTodo}) {
+
+function ToDo({title, identifier, dueDate, deleteTodo}) {
   const [isDone, setIsDone] = React.useState(false);
   const [editMode, setEditMode] = React.useState(false);
   const [todoTitle, setTodoTitle] = React.useState(title);
@@ -65,7 +65,7 @@ function ToDo({title, identifier, deleteTodo}) {
             </div>
             <div className={styles.date}>
               <p className={styles.p}>Due Date:</p>
-              <p className={styles.p}>{today}</p>
+              <p className={styles.p}>{dueDate}</p>
               <button onClick={handleEdit}>{editMode 
                   ? 'DONE'
                   : 'start edit'}

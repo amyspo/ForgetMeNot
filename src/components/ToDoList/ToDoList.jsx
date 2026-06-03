@@ -16,7 +16,7 @@ async function fetcher(endpoint) {
 }
 
 function ToDoList() {
-  const { data, isLoading, error,mutate } = useSWR(ENDPOINT, fetcher);
+  const { data, isLoading, error, mutate } = useSWR(ENDPOINT, fetcher);
 
   async function deleteTodo(identifier) {
     const confirmed = window.confirm(
@@ -46,8 +46,8 @@ function ToDoList() {
 
   return <div className={styles.wrapper}>
     <ul className={styles.list}>
-      {data?.map(({id, title}) => (
-         <ToDo key={id} title={title} identifier={id} deleteTodo={deleteTodo}/>
+      {data?.map(({id, title, dueDate}) => (
+         <ToDo key={id} title={title} identifier={id} dueDate={dueDate} deleteTodo={deleteTodo}/>
       ))}
     </ul>
   </div>;
