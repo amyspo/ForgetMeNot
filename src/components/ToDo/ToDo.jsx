@@ -1,38 +1,13 @@
 import React from 'react';
 import styles from './ToDo.module.css';
 import clsx from 'clsx';
-
-
+import { useTodos } from '../../use-to-do';
 
 function ToDo({title, identifier, dueDate, deleteTodo}) {
   const [isDone, setIsDone] = React.useState(false);
   const [editMode, setEditMode] = React.useState(false);
   const [todoTitle, setTodoTitle] = React.useState(title);
-
-  async function sendNewTitle(todoTitle) {
-
-    try {
-      const response = await fetch(`api/todos/${identifier}/rename`, {
-        method: 'POST',
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          newTitle: todoTitle,
-        }),
-      });
-
-      const json = await response.json();
-
-      if (json.id) {
-        setStatus('success');
-      } else {
-        setStatus('error');
-      }
-    } catch {
-        setStatus('error');
-    }
-  }
+  const { editTodo } = useTodos();
 
   function handleDone() {
     setIsDone(!isDone);
@@ -59,7 +34,7 @@ function ToDo({title, identifier, dueDate, deleteTodo}) {
                   if (event.key === 'Enter') {
                     setTodoTitle(todoTitle);
                     setEditMode(false);
-                    sendNewTitle(todoTitle);
+                    editTodo(todoTitle);
                 }
                 }}/>}
             </div>
