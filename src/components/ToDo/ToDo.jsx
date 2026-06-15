@@ -15,7 +15,8 @@ function ToDo({title, identifier, dueDate, deleteTodo}) {
 
   function handleEdit() {
     setEditMode(!editMode);
-    sendNewTitle(todoTitle);
+    // console.log(identifier)
+    editTodo(todoTitle, identifier);
   }
 
   return <div>
@@ -42,13 +43,13 @@ function ToDo({title, identifier, dueDate, deleteTodo}) {
               <p className={styles.p}>Due Date:</p>
               <p className={styles.p}>{dueDate}</p>
               <button onClick={handleEdit}>{editMode 
-                  ? 'DONE'
+                  ? 'done edit'
                   : 'start edit'}
               </button>
             </div>
             <div className={styles.buttons}>
-              <button className={styles.done} onClick={handleDone}>Done</button>
-              <button className={styles.delete} onClick={() => deleteTodo(identifier)}>Delete</button>
+              <button className={styles.done} onClick={handleDone} disabled={editMode}>Done</button>
+              <button className={styles.delete} onClick={() => deleteTodo(identifier)} disabled={editMode}>Delete</button>
             </div>
           </div>
         </li>

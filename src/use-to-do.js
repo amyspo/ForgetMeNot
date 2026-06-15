@@ -45,11 +45,11 @@ export function useTodos() {
         }
       }
     } catch {
-      console.log("error");
+      console.log("error3");
     }
   }
 
-  async function editTodo(newTitle) {
+  async function editTodo(newTitle, identifier) {
     try {
       const response = await fetch(`api/todos/${identifier}/rename`, {
         method: "POST",
@@ -57,19 +57,19 @@ export function useTodos() {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          newTitle: todoTitle,
+          newTitle: newTitle,
         }),
       });
 
       const json = await response.json();
 
       if (json.id) {
-        setStatus("success");
+        console.log("success");
       } else {
-        setStatus("error");
+        console.log("error4");
       }
     } catch {
-      setStatus("error");
+      console.log("error5");
     }
   }
 
