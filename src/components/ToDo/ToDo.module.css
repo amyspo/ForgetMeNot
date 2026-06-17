@@ -13,6 +13,10 @@
     padding: 0;
 }
 
+.input {
+    margin: 15px 0;
+}
+
 .buttons {
     display: grid;
     padding: 1rem;
@@ -28,39 +32,8 @@
     text-decoration: line-through;
 }
 
-.date {
-    opacity: 0.8;
-    margin: 1.5rem 0;
-}
-
 .p {
+    opacity: 0.8;
     padding: 0;
     margin: 0;
-}
-
-.done {
-    padding: 8px 16px;
-    border: none;
-    border-radius: 8px;
-    background-color: #33a41f;
-    color: white;
-    font-size: 14px;
-    font-weight: 500;
-    cursor: pointer;
-
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
-}
-
-.delete {
-    margin-top: 5px;
-    padding: 8px 16px;
-    border: none;
-    border-radius: 8px;
-    background-color: #eb4925;
-    color: white;
-    font-size: 14px;
-    font-weight: 500;
-    cursor: pointer;
-
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
 }

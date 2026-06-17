@@ -2,6 +2,8 @@ import React from 'react';
 import styles from './ToDo.module.css';
 import clsx from 'clsx';
 import { useTodos } from '../../use-to-do';
+import Button from '../Button/Button';
+import { Trash2, Check, Edit2 } from 'react-feather';
 
 function ToDo({title, identifier, dueDate, deleteTodo}) {
   const [isDone, setIsDone] = React.useState(false);
@@ -27,7 +29,7 @@ function ToDo({title, identifier, dueDate, deleteTodo}) {
             <div className={styles.title}>
               {!editMode
               ? <h2 className={clsx(isDone ? styles.titledone : '')}>{todoTitle}</h2>
-              : <input value={todoTitle} 
+              : <input className={styles.input} value={todoTitle} 
                 onChange = {(event) => {
                   setTodoTitle(event.target.value);
                 }}
@@ -38,18 +40,14 @@ function ToDo({title, identifier, dueDate, deleteTodo}) {
                     editTodo(todoTitle);
                 }
                 }}/>}
-            </div>
-            <div className={styles.date}>
               <p className={styles.p}>Due Date:</p>
               <p className={styles.p}>{dueDate}</p>
-              <button onClick={handleEdit}>{editMode 
-                  ? 'done edit'
-                  : 'start edit'}
-              </button>
             </div>
             <div className={styles.buttons}>
-              <button className={styles.done} onClick={handleDone} disabled={editMode}>Done</button>
-              <button className={styles.delete} onClick={() => deleteTodo(identifier)} disabled={editMode}>Delete</button>
+              {!editMode && <Button variants='done' aria-label="Done item" onClick={handleDone} disabled={editMode} icon={<Check />}></Button>}
+              <Button variants='edit' icon={editMode ? <Check/> : <Edit2/>} onClick={handleEdit} >
+              </Button>
+              {!editMode && <Button variants='delete' aria-label="Delete item" onClick={() => deleteTodo(identifier)} disabled={editMode} icon={<Trash2 />}></Button>}
             </div>
           </div>
         </li>
