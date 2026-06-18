@@ -17,7 +17,6 @@ function ToDo({title, identifier, dueDate, deleteTodo}) {
 
   function handleEdit() {
     setEditMode(!editMode);
-    // console.log(identifier)
     editTodo(todoTitle, identifier);
   }
 
@@ -29,7 +28,7 @@ function ToDo({title, identifier, dueDate, deleteTodo}) {
             <div className={styles.title}>
               {!editMode
               ? <h2 className={clsx(isDone ? styles.titledone : '')}>{todoTitle}</h2>
-              : <input className={styles.input} value={todoTitle} 
+              : <input className={styles.input} value={todoTitle} autoFocus={editMode}
                 onChange = {(event) => {
                   setTodoTitle(event.target.value);
                 }}
@@ -40,14 +39,14 @@ function ToDo({title, identifier, dueDate, deleteTodo}) {
                     editTodo(todoTitle);
                 }
                 }}/>}
-              <p className={styles.p}>Due Date:</p>
+              {dueDate !== undefined && <p className={styles.p}>Due Date:</p>}
               <p className={styles.p}>{dueDate}</p>
             </div>
             <div className={styles.buttons}>
-              {!editMode && <Button variants='done' aria-label="Done item" onClick={handleDone} disabled={editMode} icon={<Check />}></Button>}
-              <Button variants='edit' icon={editMode ? <Check/> : <Edit2/>} onClick={handleEdit} >
+              {!editMode && <Button variants='done' aria-label="Mark as Done" onClick={handleDone} disabled={editMode} icon={<Check />}></Button>}
+              <Button variants='edit' aria-label="Edit Task" icon={editMode ? <Check/> : <Edit2/>} onClick={handleEdit} >
               </Button>
-              {!editMode && <Button variants='delete' aria-label="Delete item" onClick={() => deleteTodo(identifier)} disabled={editMode} icon={<Trash2 />}></Button>}
+              {!editMode && <Button variants='delete' aria-label="Delete Task" onClick={() => deleteTodo(identifier)} disabled={editMode} icon={<Trash2 />}></Button>}
             </div>
           </div>
         </li>

@@ -8,7 +8,7 @@ function Header() {
         <img className={styles.img} src='ForgetMeNot.svg'/>
       {/* </div> */}
       <div className={styles.wrapper}>
-        <h1>Forget</h1><h1>Me Not</h1>
+        <h1>Forget Me Not</h1>
       </div>
     </div>
   </>;
