@@ -73,6 +73,48 @@ export function useTodos() {
     }
   }
 
+  async function editedDate(newDate, identifier) {
+    if (newDate === "" || newDate === undefined) {
+      try {
+        const response = await fetch(`api/todos/${identifier}/due-date`, {
+          method: "DELETE",
+        });
+
+        const json = await response.json();
+
+        if (json.id) {
+          console.log("success");
+        } else {
+          console.log("error4");
+        }
+      } catch {
+        console.log("error5");
+      }
+    } else {
+      try {
+        const response = await fetch(`api/todos/${identifier}/due-date`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            dueDate: newDate,
+          }),
+        });
+
+        const json = await response.json();
+
+        if (json.id) {
+          console.log("success");
+        } else {
+          console.log("error4");
+        }
+      } catch {
+        console.log("error5");
+      }
+    }
+  }
+
   async function deleteTodo(identifier) {
     const confirmed = window.confirm(
       "Are you sure you want to delete this task?",
@@ -89,5 +131,13 @@ export function useTodos() {
     mutate();
   }
 
-  return { data, isLoading, error, createTodo, editTodo, deleteTodo };
+  return {
+    data,
+    isLoading,
+    error,
+    createTodo,
+    editTodo,
+    deleteTodo,
+    editedDate,
+  };
 }
