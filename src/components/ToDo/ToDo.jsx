@@ -5,12 +5,12 @@ import { useTodos } from "../../use-to-do";
 import Button from "../Button/Button";
 import { Trash2, Check, Edit2, Edit } from "react-feather";
 
-function ToDo({ title, identifier, dueDate, deleteTodo, status }) {
+function ToDo({ title, identifier, dueDate, deleteTodo, status, reopenTodo }) {
   const [isDone, setIsDone] = React.useState(false);
   const [editMode, setEditMode] = React.useState(false);
   const [todoTitle, setTodoTitle] = React.useState(title);
   const [editDate, setEditDate] = React.useState(dueDate);
-  const { editTodo, editedDate, completeTodo, reopenTodo } = useTodos();
+  const { editTodo, editedDate, completeTodo } = useTodos();
 
   const hasDate = editDate !== "" && editDate !== undefined;
 

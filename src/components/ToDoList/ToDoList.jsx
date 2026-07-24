@@ -7,7 +7,7 @@ import { useTodos } from "../../use-to-do";
 
 function ToDoList() {
   const [view, setView] = React.useState("open");
-  const { data, isLoading, error, deleteTodo } = useTodos(view);
+  const { data, isLoading, error, deleteTodo, reopenTodo } = useTodos(view);
 
   if (isLoading) {
     return <p>Loading…</p>;
@@ -33,6 +33,7 @@ function ToDoList() {
               identifier={id}
               dueDate={dueDate}
               deleteTodo={deleteTodo}
+              reopenTodo={reopenTodo}
               status={view}
             />
           ))}
