@@ -10,12 +10,13 @@ function ToDo({ title, identifier, dueDate, deleteTodo }) {
   const [editMode, setEditMode] = React.useState(false);
   const [todoTitle, setTodoTitle] = React.useState(title);
   const [editDate, setEditDate] = React.useState(dueDate);
-  const { editTodo, editedDate } = useTodos();
+  const { editTodo, editedDate, completeTodo } = useTodos();
 
   const hasDate = editDate !== "" && editDate !== undefined;
 
   function handleDone() {
     setIsDone(!isDone);
+    completeTodo(identifier);
   }
 
   function handleEdit() {

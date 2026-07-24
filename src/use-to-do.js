@@ -1,14 +1,18 @@
 import useSWR from "swr";
 import { fetcher, sendDelete } from "./to-do-api";
 
-export function useTodos() {
-  const ENDPOINT = "/api/todos/open";
+export function useTodos(view) {
+  if (view === undefined || view === "undefined") {
+    view = "open";
+  }
+
+  const ENDPOINT = `/api/todos/${view}`;
 
   const { data, isLoading, error, mutate } = useSWR(ENDPOINT, fetcher);
 
   async function createTodo(title, dueDate) {
     try {
-      const response = await fetch("api/todos", {
+      const response = await fetch("/api/todos", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -23,8 +27,9 @@ export function useTodos() {
 
         try {
           if (json.id) {
+            console.log(json);
             const todoId = json.id;
-            const dateResponse = await fetch(`api/todos/${todoId}/due-date`, {
+            const dateResponse = await fetch(`/api/todos/${todoId}/due-date`, {
               method: "POST",
               headers: {
                 "Content-Type": "application/json",
@@ -47,11 +52,12 @@ export function useTodos() {
     } catch {
       console.log("error3");
     }
+    mutate();
   }
 
   async function editTodo(newTitle, identifier) {
     try {
-      const response = await fetch(`api/todos/${identifier}/rename`, {
+      const response = await fetch(`/api/todos/${identifier}/rename`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -76,7 +82,7 @@ export function useTodos() {
   async function editedDate(newDate, identifier) {
     if (newDate === "" || newDate === undefined) {
       try {
-        const response = await fetch(`api/todos/${identifier}/due-date`, {
+        const response = await fetch(`/api/todos/${identifier}/due-date`, {
           method: "DELETE",
         });
 
@@ -85,14 +91,14 @@ export function useTodos() {
         if (json.id) {
           console.log("success");
         } else {
-          console.log("error4");
+          console.log("error6");
         }
       } catch {
-        console.log("error5");
+        console.log("error7");
       }
     } else {
       try {
-        const response = await fetch(`api/todos/${identifier}/due-date`, {
+        const response = await fetch(`/api/todos/${identifier}/due-date`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -107,10 +113,10 @@ export function useTodos() {
         if (json.id) {
           console.log("success");
         } else {
-          console.log("error4");
+          console.log("error8");
         }
       } catch {
-        console.log("error5");
+        console.log("error9");
       }
     }
   }
@@ -131,6 +137,31 @@ export function useTodos() {
     mutate();
   }
 
+  async function completeTodo(identifier) {
+    const confirmed = window.confirm(
+      "Are you sure you want to mark this task as complete?",
+    );
+
+    if (!confirmed) return;
+
+    try {
+      const response = await fetch(`/api/todos/${identifier}/complete`, {
+        method: "POST",
+      });
+
+      const json = await response.json();
+
+      if (json.id) {
+        console.log("success");
+      } else {
+        console.log("error10");
+      }
+    } catch {
+      console.log("error11");
+    }
+    mutate();
+  }
+
   return {
     data,
     isLoading,
@@ -139,5 +170,6 @@ export function useTodos() {
     editTodo,
     deleteTodo,
     editedDate,
+    completeTodo,
   };
 }

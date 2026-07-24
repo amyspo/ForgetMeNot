@@ -12,8 +12,8 @@ export async function fetcher(endpoint) {
 
 export async function sendDelete(identifier) {
   const response = await fetch(`/api/todos/${identifier}`, {
-     method: 'DELETE',
-    });
+    method: "DELETE",
+  });
   const json = await response.json();
 
   if (!response.ok) {
@@ -22,5 +22,3 @@ export async function sendDelete(identifier) {
 
   return json;
 }
-
-
