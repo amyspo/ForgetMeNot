@@ -3,14 +3,14 @@ import styles from "./ToDo.module.css";
 import clsx from "clsx";
 import { useTodos } from "../../use-to-do";
 import Button from "../Button/Button";
-import { Trash2, Check, Edit2 } from "react-feather";
+import { Trash2, Check, Edit2, Edit } from "react-feather";
 
-function ToDo({ title, identifier, dueDate, deleteTodo }) {
+function ToDo({ title, identifier, dueDate, deleteTodo, status }) {
   const [isDone, setIsDone] = React.useState(false);
   const [editMode, setEditMode] = React.useState(false);
   const [todoTitle, setTodoTitle] = React.useState(title);
   const [editDate, setEditDate] = React.useState(dueDate);
-  const { editTodo, editedDate, completeTodo } = useTodos();
+  const { editTodo, editedDate, completeTodo, reopenTodo } = useTodos();
 
   const hasDate = editDate !== "" && editDate !== undefined;
 
@@ -79,27 +79,47 @@ function ToDo({ title, identifier, dueDate, deleteTodo }) {
                 )}
               </div>
               <div className={styles.buttons}>
-                {!editMode && (
-                  <Button
-                    variants="done"
-                    aria-label="Mark as Done"
-                    onClick={handleDone}
-                    icon={<Check />}
-                  ></Button>
+                {status === "open" && (
+                  <>
+                    {!editMode && (
+                      <Button
+                        variants="done"
+                        aria-label="Mark as Done"
+                        onClick={handleDone}
+                        icon={<Check />}
+                      ></Button>
+                    )}
+                    <Button
+                      variants="edit"
+                      aria-label="Edit Task"
+                      icon={editMode ? <Check /> : <Edit2 />}
+                      onClick={handleEdit}
+                    ></Button>
+                    {!editMode && (
+                      <Button
+                        variants="delete"
+                        aria-label="Delete Task"
+                        onClick={() => deleteTodo(identifier)}
+                        icon={<Trash2 />}
+                      ></Button>
+                    )}
+                  </>
                 )}
-                <Button
-                  variants="edit"
-                  aria-label="Edit Task"
-                  icon={editMode ? <Check /> : <Edit2 />}
-                  onClick={handleEdit}
-                ></Button>
-                {!editMode && (
-                  <Button
-                    variants="delete"
-                    aria-label="Delete Task"
-                    onClick={() => deleteTodo(identifier)}
-                    icon={<Trash2 />}
-                  ></Button>
+                {status === "completed" && (
+                  <>
+                    <Button
+                      variants="reopen"
+                      aria-label="Reopen Task"
+                      icon={<Edit />}
+                      onClick={() => reopenTodo(identifier)}
+                    ></Button>
+                    <Button
+                      variants="delete"
+                      aria-label="Delete Task"
+                      onClick={() => deleteTodo(identifier)}
+                      icon={<Trash2 />}
+                    ></Button>
+                  </>
                 )}
               </div>
             </div>

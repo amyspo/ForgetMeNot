@@ -33,6 +33,7 @@ function ToDoList() {
               identifier={id}
               dueDate={dueDate}
               deleteTodo={deleteTodo}
+              status={view}
             />
           ))}
         </ul>

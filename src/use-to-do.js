@@ -131,8 +131,8 @@ export function useTodos(view) {
     try {
       await sendDelete(identifier);
       mutate();
-    } catch {
-      console.log("error with deletetodo");
+    } catch (error) {
+      console.log("error with deletetodo", error);
     }
     mutate();
   }
@@ -149,15 +149,36 @@ export function useTodos(view) {
         method: "POST",
       });
 
-      const json = await response.json();
-
-      if (json.id) {
+      if (response.ok) {
         console.log("success");
       } else {
         console.log("error10");
       }
-    } catch {
-      console.log("error11");
+    } catch (error) {
+      console.log("error11", error);
+    }
+    mutate();
+  }
+
+  async function reopenTodo(identifier) {
+    const confirmed = window.confirm(
+      "Are you sure you want to reopen this task?",
+    );
+
+    if (!confirmed) return;
+
+    try {
+      const response = await fetch(`/api/todos/${identifier}/reopen`, {
+        method: "POST",
+      });
+
+      if (response.ok) {
+        console.log("success");
+      } else {
+        console.log("error12");
+      }
+    } catch (error) {
+      console.log("error13", error);
     }
     mutate();
   }
@@ -171,5 +192,6 @@ export function useTodos(view) {
     deleteTodo,
     editedDate,
     completeTodo,
+    reopenTodo,
   };
 }
