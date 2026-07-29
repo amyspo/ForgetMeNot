@@ -55,7 +55,7 @@ function ToDoInput() {
             />
           </label>
         </div>
-        <Button icon={<Plus />} aria-label="Add Task" disabled={isLoading}>
+        <Button icon={<Plus />} variants="add" aria-label="Add Task" disabled={isLoading}>
           {isLoading ? "send" : ""}
         </Button>
       </form>

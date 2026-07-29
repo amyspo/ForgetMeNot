@@ -5,35 +5,53 @@
   margin: 3px;
   border: none;
   border-radius: 8px;
-  background-color: rgb(134, 189, 240);
-  color: white;
   font-size: 1.125rem;
   cursor: pointer;
+}
+
+.active {
+  background-color: rgb(214, 230, 245);
+  color: rgb(106, 157, 204);
+  border: 1.5px solid rgb(134, 189, 240);
+}
+
+.inactive {
+  background-color: rgb(238, 243, 247);
+  border: 1.5px solid rgb(224, 222, 222);
+  color: rgb(141, 139, 139);
 }
 
 .done {
     border: none;
     border-radius: 8px;
-    background-color: #33a41f;
+    color: #33a41f;
+    background-color: #cef2c8;
     font-size: 14px;
     font-weight: 500;
     cursor: pointer;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
+    /* box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12); */
 }
 
 .delete {
     border: none;
-    background-color: #eb4925;
+    color: #eb4925;
+    background-color: #efcec6;
     font-weight: 500;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
+    /* box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12); */
 }
 
 .edit {
-    background-color: lightslategray;
+    border: none;
+    background-color: rgb(214, 230, 245);
+    color: rgb(106, 157, 204);
+    /* box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12); */
 }
 
 .add {
-    background-color: lightslategray;
+    border: none;
+    background-color: rgb(214, 230, 245);
+    color: rgb(106, 157, 204);
+    /* box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12); */
 }
 
 .wrapper:hover .iconWrapper {
@@ -43,3 +61,4 @@
 .wrapper:active .iconWrapper {
   transform: scale(0.9);
 }
+

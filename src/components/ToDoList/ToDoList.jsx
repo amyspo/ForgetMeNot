@@ -21,10 +21,10 @@ function ToDoList() {
   return (
     <div>
       <div className={styles.buttons}>
-        <Button onClick={() => setView("open")}>Open Tasks</Button>
-        <Button onClick={() => setView("completed")}>Done Tasks</Button>
+        <Button isActive={view === 'open'} onClick={() => setView("open")}>Open Tasks</Button>
+        <Button isActive={view === 'completed'} onClick={() => setView("completed")}>Done Tasks</Button>
       </div>
-      <div className={styles.wrapper}>
+      <div>
         <ul className={styles.list}>
           {data?.map(({ id, title, dueDate }) => (
             <ToDo

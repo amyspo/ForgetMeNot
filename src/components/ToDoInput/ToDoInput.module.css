@@ -1,6 +1,11 @@
 .wrapper {
-    margin: 2rem 3rem;
-    /* border: 1px solid hsl(209, 46%, 19%); */
+    margin: 1rem 3rem 2rem;
+    padding: 1rem;
+    border-radius: 20px;
+    background-color: rgb(238, 243, 247);
+    color: hsl(209, 46%, 19%);
+    border: rgb(238, 243, 247);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
 }
 
 form {
@@ -13,13 +18,18 @@ form {
 }
 
 input {
-    background-color: rgb(238, 243, 247);
-    color: hsl(209, 46%, 19%);
-    border: rgb(238, 243, 247);
+    border: 1.5px solid;
+    border-color: rgb(224, 222, 222);
+    color: rgb(141, 139, 139);
     border-radius: 8px;
+    background-color: rgb(238, 243, 247);
     padding: 1ex 16px;
     width: 100%;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+input:focus {
+    outline: none;
+    background-color: rgb(196, 223, 249);
 }
 
 .formgroup label {
