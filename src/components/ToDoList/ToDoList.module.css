@@ -7,3 +7,8 @@
     display: flex;
     margin-left: 45px;
 }
+
+p {
+    margin: 3.25rem;
+    color: rgb(106, 157, 204);
+}

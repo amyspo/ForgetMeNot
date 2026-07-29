@@ -26,6 +26,7 @@ function ToDoList() {
       </div>
       <div>
         <ul className={styles.list}>
+          {data?.length === 0 ? <p>You don't have any ToDo's.</p> : <></>}
           {data?.map(({ id, title, dueDate }) => (
             <ToDo
               key={id}
